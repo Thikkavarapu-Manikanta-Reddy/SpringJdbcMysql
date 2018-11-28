@@ -1,0 +1,28 @@
+<p>
+  pagination works!
+</p>
+<input type="text" name="search" placeholder="NAME...." 
+  (keyup)="onKey($event)">
+<p>{{values}}</p>
+  <table *ngIf="med" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Users</th>
+      </tr>
+  </thead>
+       <tr  *ngFor="let dat12 of data">
+        <td>{{dat12.id}}</td>
+        <td>{{dat12.email}}</td>
+        <td>{{dat12.password}}</td>
+      </tr> 
+  </table>
+  <p *ngIf="!med">{{exist}}</p>
+   <ul class="nav nav-pills">
+    <li class="nav-item" *ngFor="let p of pages">
+    	<a class="nav-link active" href=""
+    	 (click)="setpage(p,$event)">{{p}}
+    	</a></li>
+  </ul>
+  <br><br>
+<button (click)="tot()">count</button>
+<h1 *ngFor="let tot of totpage">{{tot}}</h1>
