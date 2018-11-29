@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
+
   constructor(private http: HttpClient) { }
 
 private baseUrl = 'http://localhost:8080';
@@ -39,29 +40,21 @@ private baseUrl = 'http://localhost:8080';
   {
 	return this.http.get(`${this.baseUrl}/user`);
   }
-    userdet1(): Observable<any>
+  pages(limit:number): Observable<any>
   {
-    	return this.http.get(`${this.baseUrl}/user1`);
+    return this.http.get(`${this.baseUrl}/totpage/${limit}`);
   }
-      userdet2(): Observable<any>
+  getpeep(limit:number,offset:number): Observable<any>
   {
-    	return this.http.get(`${this.baseUrl}/user2`);
+    return this.http.get(`${this.baseUrl}/pages/${limit}/${offset}`);
   }
-  pages(): Observable<any>
-  {
-    return this.http.get(`${this.baseUrl}/totpage`);
-  }
-  getpeep(page:number): Observable<any>
-  {
-    return this.http.get(`${this.baseUrl}/pages/${page}`);
-  }
-totpage(): Observable<any>
+totpage(limit:number): Observable<any>
 {
-  return this.http.get(`${this.baseUrl}/count`);
+  return this.http.get(`${this.baseUrl}/count/${limit}`);
 }
-check(search:string): Observable<any>
+check(search:string,limit:number): Observable<any>
 {
-  return this.http.get(`${this.baseUrl}/userdet/${search}`);
+  return this.http.get(`${this.baseUrl}/userdet/${search}/${limit}`);
 }
 
 }

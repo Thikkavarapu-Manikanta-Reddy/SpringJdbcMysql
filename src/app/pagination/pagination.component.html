@@ -1,6 +1,12 @@
 <p>
   pagination works!
 </p>
+<div>
+  <select (change)="onChange($event.target.value)">
+  <option *ngFor="let pag of pageno">{{pag}}</option>
+</select>
+  </div>
+  <br>
 <input type="text" name="search" placeholder="NAME...." 
   (keyup)="onKey($event)">
 <p>{{values}}</p>
