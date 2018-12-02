@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Data } from '../data';
+import { Bank } from '../bank';
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
@@ -14,11 +15,13 @@ nopage:number = 0;
 page:number = 0;
 limit:number = 2;
 data:Data;
+banks:Bank;
 mid:boolean = true;
 totpage:number = 0;
 exist:string;
 med:boolean = true;
 pageno = [2,3,4,5];
+rule:number;
   constructor(private auth:AuthService) { }
 
   ngOnInit() {
@@ -140,6 +143,16 @@ else
 this.data = JSON.parse(localStorage.getItem("names"+ JSON.parse(localStorage.getItem("pages"))+JSON.parse(localStorage.getItem("limits"))));
 }
     this.count();
+}
+
+DispBank(id:number)
+{
+  console.log(id);
+    this.auth.bank(id).subscribe(data123 => {
+    this.banks = data123,
+    console.log(this.banks),
+    console.log(typeof this.banks)
+    });
 }
 
 }

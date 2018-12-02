@@ -70,5 +70,9 @@ check(search:string,limit:number): Observable<any>
                // console.log(this.signedupstatus);
         return JSON.parse(localStorage.getItem('signedup'+JSON.parse(localStorage.getItem("pages"))+JSON.parse(localStorage.getItem("limits"))) || this.signedupstatus.toString());
       }
+      bank(id:number): Observable<any>
+      {
+        return this.http.get(`${this.baseUrl}/banks/${id}`);
+      }
 
 }

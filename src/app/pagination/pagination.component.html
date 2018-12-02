@@ -16,7 +16,9 @@
         <th>Users</th>
       </tr>
   </thead>
-       <tr  *ngFor="let dat12 of data">
+       <tr *ngFor="let dat12 of data">
+        <td><input type="radio" [value]="dat12.id"
+          (change)="DispBank(dat12.id)" [(ngModel)]="rule"></td>
         <td>{{dat12.id}}</td>
         <td>{{dat12.email}}</td>
         <td>{{dat12.password}}</td>
@@ -32,3 +34,19 @@
   <br><br>
 <button (click)="tot()">count</button>
 <h1 *ngFor="let tot of totpage">{{tot}}</h1>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>SBANK</th>
+        <th>GBANK</th>
+        <th>CBANK</th>
+      </tr>
+  </thead>
+       <tr *ngFor="let dat2 of banks">
+        <td>{{dat2.id}}</td>
+        <td>{{dat2.email}}</td>
+        <td>{{dat2.password}}</td>
+        <td>
+        </td>
+      </tr> 
+  </table>
