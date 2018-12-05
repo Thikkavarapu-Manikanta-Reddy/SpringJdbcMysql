@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Data } from '../data';
 import { Bank } from '../bank';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl  } from '@angular/forms';
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
@@ -22,13 +23,22 @@ exist:string;
 med:boolean = true;
 pageno = [2,3,4,5];
 rule:number;
-  constructor(private auth:AuthService) { }
+LoginForm: FormGroup;
+  constructor(private auth:AuthService,private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.createform();
     this.count();
   this.getpeers();
-
   }
+  createform()
+{
+this.LoginForm = this.formBuilder.group({
+  id: ['', [Validators.required] ],
+     email: ['', [Validators.required] ],
+     password: ['', [Validators.required] ],
+    });
+}
 count()
 {
   localStorage.setItem("limits",JSON.stringify(this.limit));
@@ -154,5 +164,17 @@ DispBank(id:number)
     console.log(typeof this.banks)
     });
 }
+
+onSubmit()
+{
+  this.auth.
+  putuser(this.LoginForm.value.id,this.LoginForm.value.email,this.LoginForm.value.password)
+  .subscribe(data123 => {
+    //this.data = data123
+    this.count();
+    this.getpeers();
+    });
+}
+
 
 }
