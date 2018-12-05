@@ -74,5 +74,8 @@ check(search:string,limit:number): Observable<any>
       {
         return this.http.get(`${this.baseUrl}/banks/${id}`);
       }
-
+      deletecheck(id:number): Observable<any>
+      {
+        return this.http.delete(`${this.baseUrl}/checkdelete/${id}`);
+      }
 }

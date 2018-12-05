@@ -66,7 +66,7 @@ else
 {
   console.log("From Cache!!");
   //console.log(JSON.parse(localStorage.getItem("pages")),JSON.parse(localStorage.getItem("limits")));
-  //console.log(localStorage.getItem("names"+ JSON.parse(localStorage.getItem("pages"))+JSON.parse(localStorage.getItem("limits"))));
+  console.log("names"+ JSON.parse(localStorage.getItem("pages"))+JSON.parse(localStorage.getItem("limits")));
 this.data = JSON.parse(localStorage.getItem("names"+ JSON.parse(localStorage.getItem("pages"))+JSON.parse(localStorage.getItem("limits"))));
 }
 
@@ -147,7 +147,7 @@ this.data = JSON.parse(localStorage.getItem("names"+ JSON.parse(localStorage.get
 
 DispBank(id:number)
 {
-  console.log(id);
+  console.log(id,this.rule);
     this.auth.bank(id).subscribe(data123 => {
     this.banks = data123,
     console.log(this.banks),

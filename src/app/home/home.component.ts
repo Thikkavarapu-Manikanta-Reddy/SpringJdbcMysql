@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl  } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Data } from '../data';
 import { Router } from '@angular/router';
@@ -13,12 +13,14 @@ export class HomeComponent implements OnInit {
   LoginForm: FormGroup;
   UpdateForm: FormGroup;
   ExistForm: FormGroup;
+  myForm: FormGroup;
   data1:Data;
   data2:Data;
   data3:Data;
   data4:Data;
   expression:boolean = false;
   exist:string;
+  dcount:number;
   constructor(private router: Router,private formBuilder: FormBuilder,private auth:AuthService) { }
 
   ngOnInit() {
@@ -41,6 +43,9 @@ this.UpdateForm = this.formBuilder.group({
     });
 this.ExistForm = this.formBuilder.group({
      email: ['', [Validators.required] ]
+    });
+    this.myForm = this.formBuilder.group({
+      useremail: this.formBuilder.array([])
     });
 }
 onSubmit()
@@ -145,5 +150,38 @@ userdetails()
 		console.log(typeof this.data4),
 		this.expression = true});
 }
+  onChange(id: number, isChecked: boolean) {
+  	const emailFormArray = <FormArray>this.myForm.controls.useremail;
+
+    if (isChecked) {
+      emailFormArray.push(new FormControl(id));
+    } else {
+      let index = emailFormArray.controls.findIndex(x => x.value == id)
+      emailFormArray.removeAt(index);
+    }
+    console.log(this.myForm.value.useremail);
+    console.log(typeof this.myForm.value.useremail[0]);
+  	}
+  	checkdelete()
+  	{
+      if(this.myForm.value.useremail.length>0)
+      {
+        const emailFormArray = <FormArray>this.myForm.controls.useremail;
+        this.dcount = this.myForm.value.useremail.length;
+        for(var i =0;i<this.dcount;i++)
+        {
+  		  this.auth.deletecheck(this.myForm.value.useremail[i]).subscribe(datauser => {
+        emailFormArray.removeAt(this.myForm.value.useremail[i]);
+		    this.data4 = datauser,
+		    console.log(this.data4),
+		    console.log(typeof this.data4),
+		    this.expression = true});
+    }
+      }
+      else
+      {
+        alert("no user selected to deleted");
+      }
+  	}
 
 }

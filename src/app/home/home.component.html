@@ -4,6 +4,7 @@
 <input type="text" name="search" placeholder="Email...." 
   (keyup)="onKey($event)">
 <p>{{values}}</p>
+  <form [formGroup]="myForm" (ngSubmit)="checkdelete()">
 <table *ngIf="expression" class="table table-hover">
     <thead>
       <tr>
@@ -11,11 +12,18 @@
       </tr>
   </thead>
        <tr *ngFor="let dat101 of data4">
+        <td><input type="checkbox"
+     (change)="onChange(dat101.id, $event.target.checked)">
+        </td>
         <td>{{dat101.id}}</td>
         <td>{{dat101.email}}</td>
         <td>{{dat101.password}}</td>
       </tr> 
   </table>
+  <button type="submit">ChecKDelete</button><br>
+      </form>
+  <br>
+  <pre>Form values: {{myForm.value | json}}</pre>
 <form novalidate [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
               <label for="id" >ID :</label><br>
   <input type="text"  formControlName="id" placeholder="ID...." required><br>
