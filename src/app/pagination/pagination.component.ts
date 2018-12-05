@@ -165,16 +165,5 @@ DispBank(id:number)
     });
 }
 
-onSubmit()
-{
-  this.auth.
-  putuser(this.LoginForm.value.id,this.LoginForm.value.email,this.LoginForm.value.password)
-  .subscribe(data123 => {
-    //this.data = data123
-    this.count();
-    this.getpeers();
-    });
-}
-
 
 }

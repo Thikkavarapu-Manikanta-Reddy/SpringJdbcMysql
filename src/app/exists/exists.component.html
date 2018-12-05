@@ -1,4 +1,74 @@
-<p>
-  exists works!
-</p>
 
+<div>
+  <select (change)="onChange($event.target.value)">
+  <option *ngFor="let pag of pageno">{{pag}}</option>
+</select>
+  </div>
+  <br>
+<input type="text" name="search" placeholder="NAME...." 
+  (keyup)="onKey($event)">
+  <br>
+<p>{{values}}</p>
+<br>
+<form [formGroup]="myForm" (ngSubmit)="checkdelete()">
+	 <div class="table-responsive">
+  <table *ngIf="med" class="table table-hover table-bordered table-striped" >
+    <thead>
+      <tr>
+        <th>CheckBox</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Password</th>
+      </tr>
+  </thead>
+       <tr *ngFor="let dat12 of data">
+        <td><input type="checkbox"
+     (change)="onChange123(dat12.id, $event.target.checked)"></td>
+        <td>{{dat12.id}}</td>
+        <td>{{dat12.email}}</td>
+        <td>{{dat12.password}}</td>
+      </tr> 
+  </table>
+</div>
+  <p *ngIf="!med">{{exist}}</p>
+   <ul class="nav nav-pills">
+   	<li><button type="button" (click)="setpageleft($event)" class="btn btn-default btn-md"><span class="glyphicon glyphicon-chevron-left"></span></button></li>
+    <li class="nav-item" *ngFor="let p of pages">
+    	<a class="nav-link active" href=""
+    	 (click)="setpage(p,$event)">{{p}}
+    	</a></li>
+    	   	<li><button  type="button" (click)="setpageright($event)" class="btn btn-default btn-md"><span class="glyphicon glyphicon-chevron-right"></span></button></li>
+  </ul>
+  <br>
+    <button type="submit">ChecKDelete</button><br>
+      </form>
+  <br>
+  <pre>Form values: {{myForm.value | json}}</pre>
+  <br>
+  <form novalidate [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+              <label for="id" >ID :</label><br>
+  <input type="text"  formControlName="id" placeholder="ID...." required><br>
+            <label for="email" >Email :</label><br>
+  <input type="email"  formControlName="email" placeholder="Email...." required><br>
+<label for="password" >Password :</label>
+  <input type="password"    formControlName="password" placeholder="Password...." required>
+
+              <br><br>
+
+  <button type="submit">Post</button><br>
+</form>
+                <table ng-if="expression" class="table table-hover">
+    <thead>
+      <tr>
+        <th>NEWUSER</th>
+      </tr>
+  </thead>
+       <tr *ngFor="let dat12 of data1">
+        <td>{{dat12.id}}</td>
+        <td>{{dat12.email}}</td>
+        <td>{{dat12.password}}</td>
+      </tr> 
+  </table>
+
+
+  
