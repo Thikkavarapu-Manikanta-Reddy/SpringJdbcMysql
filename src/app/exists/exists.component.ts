@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { Data } from '../data';
 import { Bank } from '../bank';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl  } from '@angular/forms';
+declare var $: any;
 @Component({
   selector: 'app-exists',
   templateUrl: './exists.component.html',
@@ -24,6 +25,7 @@ pageno = [2,3,4,5];
 myForm: FormGroup;
 LoginForm: FormGroup;
  dcount:number;
+ message:string;
   constructor(private auth:AuthService,private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -212,6 +214,26 @@ onSubmit()
 		this.count();
   		this.getpeers123();
     });
+}
+
+modify()
+{
+	if(this.myForm.value.useremail.length == 1)
+	{
+		this.message = "Good You Can Proceed Further!!";
+		$('#myModal').modal('show');
+	}
+	else if(this.myForm.value.useremail.length == 0)
+	{
+		this.message = "Select Atmost One User to Modify!!";
+		$('#myModal').modal('show');
+	}
+	else
+	{
+		this.message = "At a time You Can Modify One User Only!!";
+		$('#myModal').modal('show');
+	}
+
 }
 
 }

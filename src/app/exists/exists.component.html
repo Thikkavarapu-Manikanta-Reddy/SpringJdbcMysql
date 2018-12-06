@@ -43,6 +43,7 @@
     <button type="submit">ChecKDelete</button><br>
       </form>
   <br>
+  <button type="submit" (click)="modify()">Modify</button><br>
   <pre>Form values: {{myForm.value | json}}</pre>
   <br>
   <form novalidate [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
@@ -69,6 +70,28 @@
         <td>{{dat12.password}}</td>
       </tr> 
   </table>
-
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">BasicSpringStuff</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h2>{{message}}</h2>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
   
